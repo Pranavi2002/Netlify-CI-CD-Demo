@@ -5,6 +5,7 @@ function App() {
       <p>Every GitHub push auto-deploys to Netlify.</p>
       <h2>🔥 Updated version deployed via CI/CD!</h2>
       <p>Added GutHub Actions.</p>
+      <p>Added multiple tests.</p>
     </div>
   );
 }
