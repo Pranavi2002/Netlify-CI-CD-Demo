@@ -4,6 +4,7 @@ function App() {
       <h1>🚀 Hello from React + Netlify CI/CD!</h1>
       <p>Every GitHub push auto-deploys to Netlify.</p>
       <h2>🔥 Updated version deployed via CI/CD!</h2>
+      <p>Added GutHub Actions.</p>
     </div>
   );
 }
