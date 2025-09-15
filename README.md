@@ -52,7 +52,7 @@ src/
 git checkout -b feature/your-feature
 ```
 
-### Make changes to App.js or test file
+- Make changes to App.js or test file
 
 ```bash
 git add .
