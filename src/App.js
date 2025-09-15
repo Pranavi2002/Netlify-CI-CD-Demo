@@ -6,6 +6,7 @@ function App() {
       <h2>🔥 Updated version deployed via CI/CD!</h2>
       <p>Added GutHub Actions.</p>
       <p>Added multiple tests.</p>
+      <h3>Created a feature branch.</h3>
     </div>
   );
 }
