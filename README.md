@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# React + Netlify CI/CD Demo
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![CI Pipeline](https://github.com/Pranavi2002/Netlify-CI-CD-Demo/actions/workflows/ci.yml/badge.svg)](https://github.com/Pranavi2002/Netlify-CI-CD-Demo/actions/workflows/ci.yml)  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f97dd6b2-5872-4916-abba-c76c1bc250f0/deploy-status)](https://app.netlify.com/projects/netlify-ci-cd-demo/deploys)
 
-## Available Scripts
+A demo React project to showcase **CI/CD with GitHub Actions and Netlify**.  
+Every push to GitHub runs automated tests, and successful merges to `main` automatically deploy to Netlify.
 
-In the project directory, you can run:
+**Live Demo:** [https://netlify-ci-cd-demo.netlify.app/](https://netlify-ci-cd-demo.netlify.app/)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React app with multiple components and headings
+- GitHub Actions workflow for **continuous integration**
+- Automated testing with **Jest & React Testing Library**
+- Netlify deployment for **continuous deployment**
+- Branch protection ensures **only passing code is deployed**
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Structure
 
-### `npm run build`
+```
+src/
+├── App.js
+├── App.test.js               # Basic test file
+├── App.realistic.test.js     # Realistic CI/CD test file
+└── index.js
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## GitHub Actions Workflow
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Workflow file: `.github/workflows/ci.yml`
+- Runs on `push` and `pull_request` to `main`
+- Steps:
+  1. Checkout code
+  2. Setup Node.js
+  3. Install dependencies
+  4. Run all tests (`npm test`)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## How CI/CD Works
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Feature branch workflow** (recommended for real-world projects):
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+git checkout -b feature/your-feature
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Make changes to App.js or test file
 
-## Learn More
+```bash
+git add .
+git commit -m "Add feature / update tests"
+git push origin feature/your-feature
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. **Open a Pull Request (PR)** to `main` branch
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   * GitHub Actions runs tests automatically
+   * Status checks show pass/fail in PR
 
-### Code Splitting
+3. **Check test results**
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+   * ✅ All tests pass → branch can be merged
+   * ❌ Any test fails → cannot merge due to branch protection
 
-### Analyzing the Bundle Size
+4. **Merge PR** → automatically triggers Netlify deploy
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Branch Protection Rules
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+* `main` branch protected to require passing **CI Pipeline** status checks
+* Prevents broken code from being deployed
+* Optional: Require PR review before merging
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Adding Tests
 
-### Deployment
+* Add new `.test.js` files in `src/`
+* Jest automatically runs all test files in CI workflow
+* Example:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```javascript
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-### `npm run build` fails to minify
+test('renders main heading', () => {
+  render(<App />);
+  const heading = screen.getByRole('heading', { level: 1 });
+  expect(heading).toHaveTextContent(/Hello from React/i);
+});
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+
+## Deployment
+
+* Netlify automatically deploys **merged commits** from `main`
+* Only deploys if **CI tests pass**
+
+---
+
+## 👩‍💻 Author
+### Pranavi Kolipaka
+Feel free to connect: 
+- [LinkedIn] (https://www.linkedin.com/in/vns-sai-pranavi-kolipaka-489601208/) 
+- [GitHub] (https://github.com/Pranavi2002)
+
